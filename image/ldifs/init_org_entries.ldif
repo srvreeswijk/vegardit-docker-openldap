@@ -3,9 +3,9 @@ version: 1
 ##############################
 # Internal Users
 ##############################
-dn: uid=employee1,ou=Internal,ou=Users,${LDAP_INIT_ORG_DN}
+dn: uid=employee1,ou=People,${LDAP_INIT_ORG_DN}
 ou: Internal
-ou: Users
+ou: People
 description: Employee 1
 objectClass: top
 objectClass: inetOrgPerson
@@ -19,46 +19,6 @@ givenName: Employee1
 mail: employee1@example.com
 userPassword: changeit
 
-
-##############################
-# External Users
-##############################
-dn: uid=guest1,ou=External,ou=Users,${LDAP_INIT_ORG_DN}
-ou: External
-ou: Users
-description: Guest 1
-objectClass: top
-objectClass: inetOrgPerson
-objectClass: organizationalPerson
-objectClass: person
-uid: guest1
-cn: Guest1
-sn: Guest1
-givenName: Guest1
-mail: guest1@example.com
-userPassword: changeit
-
-
-##############################
-# Technical Users
-##############################
-dn: uid=machine1,ou=TechnicalAccounts,ou=Users,${LDAP_INIT_ORG_DN}
-ou: External
-ou: Users
-description: Machine 1
-objectClass: top
-objectClass: inetOrgPerson
-objectClass: organizationalPerson
-objectClass: person
-objectClass: ldapPublicKey
-uid: machine1
-cn: Machine1
-sn: Machine1
-givenName: Machine1
-mail: machine1@example.com
-userPassword: changeit
-
-
 ##############################
 # Groups
 ##############################
@@ -68,7 +28,7 @@ objectClass: top
 objectClass: groupOfUniqueNames
 cn: ldap-admins
 description: Ldap Admin Group
-uniqueMember: uid=employee1,ou=Internal,ou=Users,${LDAP_INIT_ORG_DN}
+uniqueMember: uid=employee1,ou=Internal,ou=People,${LDAP_INIT_ORG_DN}
 
 dn: cn=employees,ou=Groups,${LDAP_INIT_ORG_DN}
 ou: Groups
@@ -76,7 +36,7 @@ objectClass: top
 objectClass: groupOfUniqueNames
 cn: employees
 description: Employees Group
-uniqueMember: uid=employee1,ou=Internal,ou=Users,${LDAP_INIT_ORG_DN}
+uniqueMember: uid=employee1,ou=Internal,ou=People,${LDAP_INIT_ORG_DN}
 
 dn: cn=guests,ou=Groups,${LDAP_INIT_ORG_DN}
 ou: Groups
@@ -84,7 +44,7 @@ objectClass: top
 objectClass: groupOfUniqueNames
 cn: guests
 description: Guests Group
-uniqueMember: uid=guest1,ou=External,ou=Users,${LDAP_INIT_ORG_DN}
+uniqueMember: uid=guest1,ou=External,ou=People,${LDAP_INIT_ORG_DN}
 
 dn: cn=machines,ou=Groups,${LDAP_INIT_ORG_DN}
 ou: Groups
@@ -92,4 +52,4 @@ objectClass: top
 objectClass: groupOfUniqueNames
 cn: machines
 description: Machines Group
-uniqueMember: uid=machine1,ou=TechnicalAccounts,ou=Users,${LDAP_INIT_ORG_DN}
+uniqueMember: uid=machine1,ou=TechnicalAccounts,ou=People,${LDAP_INIT_ORG_DN}

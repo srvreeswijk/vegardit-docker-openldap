@@ -15,29 +15,29 @@ description: Groups
 objectClass: top
 objectClass: organizationalUnit
 
-dn: ou=Users,${LDAP_INIT_ORG_DN}
-ou: Users
+dn: ou=People,${LDAP_INIT_ORG_DN}
+ou: People
 description: Users Accounts
 objectClass: top
 objectClass: organizationalUnit
 
-dn: ou=Internal,ou=Users,${LDAP_INIT_ORG_DN}
+dn: ou=Internal,ou=People,${LDAP_INIT_ORG_DN}
 ou: Internal
-ou: Users
+ou: People
 description: Internal Users (Employees)
 objectClass: top
 objectClass: organizationalUnit
 
-dn: ou=External,ou=Users,${LDAP_INIT_ORG_DN}
+dn: ou=External,ou=People,${LDAP_INIT_ORG_DN}
 ou: External
-ou: Users
+ou: People
 description: External Users (Contractors, Customers)
 objectClass: top
 objectClass: organizationalUnit
 
-dn: ou=TechnicalAccounts,ou=Users,${LDAP_INIT_ORG_DN}
+dn: ou=TechnicalAccounts,ou=People,${LDAP_INIT_ORG_DN}
 ou: TechnicalAccounts
-ou: Users
+ou: People
 description: Technical Accounts
 objectClass: top
 objectClass: organizationalUnit
