@@ -87,6 +87,7 @@ if [ ! -e /etc/ldap/slapd.d/initialized ]; then
       local file=${!#}
       log INFO "Loading [$file]..."
       interpolate < $file > /tmp/$(basename $file)
+      # cat /tmp/$(basename $file)
       ldap$action -H ldapi:/// "${@:1:${#}-1}" -f /tmp/$(basename $file)
    }
 
@@ -160,7 +161,7 @@ if [ ! -e /etc/ldap/slapd.d/initialized ]; then
      ldif modify -Y EXTERNAL /opt/ldifs/init_config_admin_access.ldif
    fi
 
-   LDAP_INIT_ORG_DN_ATTR=$(substr_before $LDAP_INIT_ORG_DN "," | str_replace "=" ": ") # referenced by init_org_tree.ldif
+   # LDAP_INIT_ORG_DN_ATTR=$(substr_before $LDAP_INIT_ORG_DN "," | str_replace "=" ": ") # referenced by init_org_tree.ldif
    ldif add -x -D "$LDAP_INIT_ROOT_USER_DN" -w "$LDAP_INIT_ROOT_USER_PW" /opt/ldifs/init_org_tree.ldif
    ldif add -x -D "$LDAP_INIT_ROOT_USER_DN" -w "$LDAP_INIT_ROOT_USER_PW" /opt/ldifs/init_org_ppolicy.ldif
    ldif add -x -D "$LDAP_INIT_ROOT_USER_DN" -w "$LDAP_INIT_ROOT_USER_PW" /opt/ldifs/init_org_entries.ldif

@@ -55,7 +55,5 @@ function _on_exit() {
    echo "$image_name"
    echo ""
    docker images "$image_repo"
-   echo ""
-   docker history "$image_name"
 }
 trap _on_exit EXIT

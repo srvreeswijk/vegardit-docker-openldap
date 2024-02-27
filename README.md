@@ -1,10 +1,3 @@
-# vegardit/openldap <a href="https://github.com/vegardit/docker-openldap/" title="GitHub Repo"><img height="30" src="https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/github.svg?sanitize=true"></a>
-
-[![Build Status](https://github.com/vegardit/docker-openldap/workflows/Build/badge.svg "GitHub Actions")](https://github.com/vegardit/docker-openldap/actions?query=workflow%3ABuild)
-[![License](https://img.shields.io/github/license/vegardit/docker-openldap.svg?label=license)](#license)
-[![Docker Pulls](https://img.shields.io/docker/pulls/vegardit/openldap.svg)](https://hub.docker.com/r/vegardit/openldap)
-[![Docker Stars](https://img.shields.io/docker/stars/vegardit/openldap.svg)](https://hub.docker.com/r/vegardit/openldap)
-[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](CODE_OF_CONDUCT.md)
 
 1. [What is it?](#what-is-it)
 1. [Configuration](#config)
@@ -18,6 +11,15 @@
    1. [Troubleshooting](#troubleshooting)
 1. [References](#references)
 1. [License](#license)
+
+## Rijkszaak
+
+admin user = "cn=admin,dc=rijkszaak,dc=nl"
+
+LDAP laten samenwerken met windows AD en dus gebruik maken van rfc2307bis in plaats van rfc2307.  
+Lang verhaal kort komt dit neer op het verschil tussen groups en memberOf gebruik.  
+https://unofficialaciguide.com/2019/07/31/ldap-schemas-for-aci-administrators-rfc2307-vs-rfc2307bis/
+
 
 
 ## <a name="what-is-it"></a>What is it?

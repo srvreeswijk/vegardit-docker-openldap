@@ -10,16 +10,16 @@ function curl() {
 }
 
 shared_lib="$(dirname $0)/.shared"
-[ -e "$shared_lib" ] || curl https://raw.githubusercontent.com/vegardit/docker-shared/v1/download.sh?_=$(date +%s) | bash -s v1 "$shared_lib" || exit 1
 source "$shared_lib/lib/build-image-init.sh"
 
 
 #################################################
 # specify target repo and image name
 #################################################
-image_repo=${DOCKER_IMAGE_REPO:-vegardit/openldap}
+image_repo=${DOCKER_IMAGE_REPO:-rijkszaak/openldap}
 base_image_name=${DOCKER_BASE_IMAGE:-debian:bookworm-slim}
 image_name=$image_repo:latest
+image_version=${IMAGE_VERSION:-v22-snapshot}
 
 
 #################################################
@@ -60,36 +60,20 @@ echo "ldap_version=$ldap_version"
 #################################################
 # apply tags
 #################################################
+echo "apply tags"
 declare -a tags=()
 tags+=($image_name) # :latest
-tags+=($image_repo:${ldap_version})       # :2.5.12
-tags+=($image_repo:${ldap_version%.*}.x)  # :2.5.x
-tags+=($image_repo:${ldap_version%%.*}.x) # :2.x
+tags+=($image_repo:${image_version})       # :v23-snapshot
 
 for tag in ${tags[@]}; do
   docker image tag $image_name $tag
-  if [[ "${DOCKER_PUSH:-}" == "true" ]]; then
-    docker image tag $image_name ghcr.io/$tag
-  fi
 done
 
 
 #################################################
 # perform security audit
 #################################################
-if [[ "${DOCKER_AUDIT_IMAGE:-1}" == 1 ]]; then
+if [[ "${DOCKER_AUDIT_IMAGE:-0}" == 1 ]]; then
+  echo "perform security audit"
   bash "$shared_lib/cmd/audit-image.sh" $image_name
-fi
-
-
-#################################################
-# push image with tags to remote docker image registry
-#################################################
-if [[ "${DOCKER_PUSH:-}" == "true" ]]; then
-  for tag in ${tags[@]}; do
-    set -x
-    docker push $tag
-    docker push ghcr.io/$tag
-    set +x
-  done
 fi

@@ -3,11 +3,12 @@ version: 1
 ##############################
 # LDAP tree definition
 ##############################
-dn: ${LDAP_INIT_ORG_DN}
+dn: o=${LDAP_INIT_ORG_NAME},${LDAP_INIT_ORG_DN}
 description: ${LDAP_INIT_ORG_NAME}
 objectClass: top
 objectClass: organization
-${LDAP_INIT_ORG_DN_ATTR}
+o: ${LDAP_INIT_ORG_NAME}
+
 
 dn: ou=Groups,${LDAP_INIT_ORG_DN}
 ou: Groups

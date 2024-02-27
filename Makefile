@@ -1,14 +1,14 @@
 # Deze vars worden nu niet gebruikt.
-NAME = vegardit-ldap
-VERSION = 1.0
+NAME = rijkszaak/openldap
+VERSION = v23-snapshot
 
 .PHONY: build test run
 
 build:
-	DOCKER_AUDIT_IMAGE=0 ./build-image.sh
+	IMAGE_VERSION=$(VERSION) ./build-image.sh
 
 run:
-	docker run -itd --env-file rijkszaak/rijkszaak.env vegardit/openldap
+	docker run -itd --env-file rijkszaak/rijkszaak.env $(NAME)
 
 test:
 	test/test.sh
